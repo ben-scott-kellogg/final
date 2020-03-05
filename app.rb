@@ -29,6 +29,13 @@ get "/" do
     view "home"
 end
 
+get "/areas/:id" do
+    puts "params: #{params}"
+    @area = areas_table.where(id: params[:id]).to_a[0]
+    @locations = locations_table.all.to_a
+    view "area"
+end
+
 get "/locations" do
     puts "params: #{params}"
 

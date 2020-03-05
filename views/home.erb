@@ -1,7 +1,10 @@
-<h3> Search by Neighborhood </h3>
-
-<% for area in @areas %>
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Search by Neighborhood
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="#"><% for area in @areas %>
     <p><a href="/areas/<%= area[:id] %>"><%= area[:name] %></a></p>
-<% end %>
-
-<h3> Search by Destination </h3>
+<% end %></a>
+  </div>
+</div>

@@ -9,7 +9,7 @@ DB.create_table! :locations do
   primary_key :id
   foreign_key :areas_id
   String :name
-  String :description, text: true
+  String :description
   String :address
 end
 DB.create_table! :rikis do
@@ -19,7 +19,7 @@ DB.create_table! :rikis do
   Boolean :rating
   String :name
   String :purpose
-  String :comments, text: true
+  String :comments
 end
 DB.create_table! :areas do
   primary_key :id
@@ -34,8 +34,8 @@ end
 
 # Insert initial (seed) data
 locations_table = DB.from(:locations)
-locations_table.insert(name: "Bacon Burger Taco Fest", 
-                    description: "Here we go again bacon burger taco fans, another Bacon Burger Taco Fest is here!",
+locations_table.insert(name: "Whiskey Thief", 
+                    description: "A cool bar",
                     address: "Kellogg Global Hub")
 
 locations_table.insert(name: "Kaleapolooza", 
