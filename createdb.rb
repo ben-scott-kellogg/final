@@ -34,7 +34,6 @@ end
 
 # Insert initial (seed) data
 locations_table = DB.from(:locations)
-
 locations_table.insert(name: "Bacon Burger Taco Fest", 
                     description: "Here we go again bacon burger taco fans, another Bacon Burger Taco Fest is here!",
                     address: "Kellogg Global Hub")
@@ -42,5 +41,18 @@ locations_table.insert(name: "Bacon Burger Taco Fest",
 locations_table.insert(name: "Kaleapolooza", 
                     description: "If you're into nutrition and vitamins and stuff, this is the event for you.",
                     address: "Nowhere")
+
+areas_table = DB.from(:areas)
+areas_table.insert(name: "Evanston")
+areas_table.insert(name: "West Loop")
+areas_table.insert(name: "Bucktown")
+areas_table.insert(name: "Lincoln Park")
+areas_table.insert(name: "Logan Square")
+areas_table.insert(name: "The Loop")
+areas_table.insert(name: "Old Town")
+areas_table.insert(name: "River North")
+areas_table.insert(name: "Rogers Park")
+areas_table.insert(name: "Streeterville")
+areas_table.insert(name: "Wicker Park")
 
                 

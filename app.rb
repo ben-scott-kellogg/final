@@ -19,8 +19,13 @@ rikis_table = DB.from(:rikis)
 areas_table = DB.from(:areas)
 users_table = DB.from(:users)
 
+before do
+    @current_user = users_table.where(id: session["user_id"]).to_a[0]
+end
+
 get "/" do
     puts "params: #{params}"
+    @areas = areas_table.all.to_a
     view "home"
 end
 
@@ -36,13 +41,9 @@ get "/users/new" do
 end
 
 post "/users/create" do
-    puts "params: #{params}"
-    
-    users_table.insert(
-        name: params["name"],
-        email: params["email"],
-        password: params["password"],
-    )
+    puts params
+    hashed_password = BCrypt::Password.create(params["password"])
+    users_table.insert(name: params["name"], email: params["email"], password: hashed_password)
     view "create_user"
 end
 
@@ -51,18 +52,20 @@ get "/logins/new" do
 end
 
 post "/logins/create" do
-    puts "params: #{params}"
- # is there a user with the params ["email"]
-    @user = users_table.where(email: params["email"]).to_a[0]
-    if @user
-        #step 2: if there is, does the password match?   
-        if @user[:password] == params["password"]
-            session["user_id"] = @user[:id]
-            view "create_login"
-        else
-            view "create_login_failed"
-        end
-    else view "create_login_failed"
+    user = users_table.where(email: params["email"]).to_a[0]
+    puts BCrypt::Password::new(user[:password])
+    if user && BCrypt::Password::new(user[:password]) == params["password"]
+        session["user_id"] = user[:id]
+        @current_user = user
+        view "create_login"
+    else
+        view "create_login_failed"
     end
+end
+
+get "/logout" do
+    session["user_id"] = nil
+    @current_user = nil
+    view "logout"
 end
 
