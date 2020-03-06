@@ -36,11 +36,18 @@ end
 locations_table = DB.from(:locations)
 locations_table.insert(name: "Whiskey Thief", 
                     description: "A cool bar",
-                    address: "Kellogg Global Hub")
+                    address: "616 Davis St", 
+                    areas_id: 1)
 
-locations_table.insert(name: "Kaleapolooza", 
-                    description: "If you're into nutrition and vitamins and stuff, this is the event for you.",
-                    address: "Nowhere")
+locations_table.insert(name: "Moneygun", 
+                    description: "Trap kingdom come",
+                    address: "660 W Lake St", 
+                    areas_id: 2)
+
+locations_table.insert(name: "Lone Wolf", 
+                    description: "A bar",
+                    address: "806 W Randolf St", 
+                    areas_id: 2)
 
 areas_table = DB.from(:areas)
 areas_table.insert(name: "Evanston")
