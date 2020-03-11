@@ -14,9 +14,16 @@ before { puts; puts "--------------- NEW REQUEST ---------------"; puts }       
 after { puts; }                                                                       #
 #######################################################################################
 
+#Locations Table: restaurants, activities, bars
 locations_table = DB.from(:locations)
+
+#Rikis Table: reviews for locations (e.g. thumbs up/down, comment, symbol)
 rikis_table = DB.from(:rikis)
+
+#Areas Table: neighborhoods in Chicago
 areas_table = DB.from(:areas)
+
+#Users Table: users 
 users_table = DB.from(:users)
 
 before do
@@ -36,11 +43,15 @@ get "/areas/:id" do
     view "area"
 end
 
-get "/locations" do
+get "/locations/:id" do
     puts "params: #{params}"
-
     @locations = locations_table.all.to_a
-    view "locations"
+    @location = locations_table.where(id: params[:id]).to_a[0]
+    @user = users_table.where(id: params[:id]).to_a[0]
+    @rikis = rikis_table.where(locations_id: @location[:id])
+    @users_table = users_table
+
+    view "location"
 end
 
 get "/users/new" do
@@ -76,3 +87,25 @@ get "/logout" do
     view "logout"
 end
 
+# Riki Submission Page
+
+post "/rikis/submit" do
+    puts params
+    rikis_table.insert(purpose: params["purpose"],
+                        rating: params["rating"],
+                        comments: params["comments"],
+                        users_id: params["users_id"],
+                        locations_id: params["locations_id"])
+    view "submit_riki"
+end
+
+# Location Submission Page
+
+post "/locations/submit" do
+    puts params
+    locations_table.insert(areas_id: params["areas_id"], 
+                            name: params["name"],
+                            address: params["address"],
+                            description: params["description"])
+    view "submit_location"
+end
