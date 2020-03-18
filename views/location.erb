@@ -1,9 +1,15 @@
+  <span class="fa-stack fa-3x">
+  <i class="fas fa-burn fa-stack-2x"></i>
+  <span class="fa fa-stack-1x" style="color:red;">
+    <span style="font-size:20px;">
+      <%= @average.round(2)%>
+    </span>
+  </span>
+</span>
+
 <h1>
-  <%= @location[:name] %>
+  <%= @location[:name] %>   
 </h1>
-<div>
-  <img src="fire.jpg">
-</div>
 
 <h4>
   Address: <a href="/map/<%= @location[:id] %>"><%= @location[:address] %> </a>
@@ -11,12 +17,6 @@
 
 <h4>
   Description: <%= @location[:description] %>
-</h4>
-
-<h4>
-    <em>
-        Riki-Score: <%= @average.round(2)%>
-    </em>
 </h4>
 
 <p></p>
