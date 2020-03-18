@@ -16,7 +16,7 @@ DB.create_table! :rikis do
   primary_key :id
   foreign_key :locations_id
   foreign_key :users_id
-  Boolean :rating
+  Integer :rating
   String :name
   String :purpose
   String :comments
@@ -140,3 +140,151 @@ users_table.insert(name: "Christian",
 users_table.insert(name: "Ben",
                 email: "benjamin.t.scott@gmail.com", 
                 password: "Riki2") 
+
+#Riki's (Seed)
+
+rikis_table = DB.from(:rikis)
+
+rikis_table.insert(locations_id: 1,
+                users_id: 1, 
+                rating: 5,
+                purpose: "Eat",
+                comments: "The best late-night cheeseburger + fries combo in Evanston")
+
+rikis_table.insert(locations_id: 1,
+                users_id: 2, 
+                rating: 4,
+                purpose: "Eat",
+                comments: "I'd recommend eating by the library book stacks in the back!")
+
+rikis_table.insert(locations_id: 2,
+                users_id: 2, 
+                rating: 4,
+                purpose: "Eat",
+                comments: "Brisket sandwich + beers with the boys last Thursday")
+
+rikis_table.insert(locations_id: 2,
+                users_id: 3, 
+                rating: 3,
+                purpose: "Drink",
+                comments: "Closes at ~10PM... Classic Evanston")
+
+rikis_table.insert(locations_id: 3,
+                users_id: 3, 
+                rating: 3,
+                purpose: "Drink",
+                comments: "Great deals on Fireball, but not much else")
+
+rikis_table.insert(locations_id: 3,
+                users_id: 1, 
+                rating: 2,
+                purpose: "Drink",
+                comments: "A bit too dark and depressing for my taste")
+
+rikis_table.insert(locations_id: 4,
+                users_id: 1, 
+                rating: 5,
+                purpose: "Drink",
+                comments: "The food is amazing and the ambiance puts it over the top!")
+
+rikis_table.insert(locations_id: 4,
+                users_id: 2, 
+                rating: 4,
+                purpose: "Drink",
+                comments: "An amazing deal even at $350+ a head...")
+
+rikis_table.insert(locations_id: 5,
+                users_id: 2, 
+                rating: 4,
+                purpose: "Eat",
+                comments: "Caught the Cubs here with some buddies last week!")
+
+rikis_table.insert(locations_id: 5,
+                users_id: 3, 
+                rating: 5,
+                purpose: "Drink",
+                comments: "Bottomless mimosas on Saturday was a blast!")
+
+rikis_table.insert(locations_id: 6,
+                users_id: 3, 
+                rating: 1,
+                purpose: "Drink",
+                comments: "Drinks are wayyy watered-down. Tastes like water...")
+
+rikis_table.insert(locations_id: 6,
+                users_id: 1, 
+                rating: 3,
+                purpose: "Drink",
+                comments: "You get what you pay for...")
+
+rikis_table.insert(locations_id: 7,
+                users_id: 1, 
+                rating: 4,
+                purpose: "Do",
+                comments: "Never been outside of a Kellogg event... but great whiskey selection...")
+
+rikis_table.insert(locations_id: 7,
+                users_id: 2, 
+                rating: 2,
+                purpose: "Drink",
+                comments: "Much better selections across the street")
+
+rikis_table.insert(locations_id: 8,
+                users_id: 2, 
+                rating: 5,
+                purpose: "Do",
+                comments: "Best karaoke option in all of River North!")
+
+rikis_table.insert(locations_id: 8,
+                users_id: 3, 
+                rating: 4,
+                purpose: "Eat",
+                comments: "Awesome BBQ + HH at ~5ish, which can be followed into an even better night")
+
+rikis_table.insert(locations_id: 9,
+                users_id: 3, 
+                rating: 2,
+                purpose: "Drink",
+                comments: "I don't see the hype... Go elsewhere in West Loop...")
+
+rikis_table.insert(locations_id: 9,
+                users_id: 1, 
+                rating: 3,
+                purpose: "Drink",
+                comments: "Great spot, but only if you can snag a seat at the bar")
+
+rikis_table.insert(locations_id: 10,
+                users_id: 1, 
+                rating: 4,
+                purpose: "Eat",
+                comments: "Celebrated here after getting my job offer! Awesome drinks!")
+
+rikis_table.insert(locations_id: 10,
+                users_id: 2, 
+                rating: 5,
+                purpose: "Eat",
+                comments: "I'd recommend ordering the Jungle Bird!")
+
+rikis_table.insert(locations_id: 11,
+                users_id: 2, 
+                rating: 4,
+                purpose: "Drink",
+                comments: "Hands down, my favorite bar in Wicker!")
+
+rikis_table.insert(locations_id: 11,
+                users_id: 3, 
+                rating: 5,
+                purpose: "Drink",
+                comments: "Killer combo after finishing a show at the Concord!")
+
+rikis_table.insert(locations_id: 12,
+                users_id: 3, 
+                rating: 3,
+                purpose: "Drink",
+                comments: "Interior decor makes up for an otherwise average spot...")
+
+rikis_table.insert(locations_id: 12,
+                users_id: 1, 
+                rating: 4,
+                purpose: "Drink",
+                comments: "Great date spot! Grab a seat by the back couches...")
