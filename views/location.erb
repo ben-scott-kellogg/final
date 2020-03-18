@@ -3,11 +3,17 @@
 </h1>
 
 <h4>
-  Address: <%= @location[:address] %>
+  Address: <a href="/map/<%= @location[:id] %>"><%= @location[:address] %> </a>
 </h4>
 
 <h4>
   Description: <%= @location[:description] %>
+</h4>
+
+<h4>
+    <em>
+        Riki-Score: <%= @average.round(2)%>
+    </em>
 </h4>
 
 <p></p>
@@ -42,6 +48,9 @@
 
 <!-- Form for Review Submission -->
 
+<p class="mt-5">
+<% if @current_user %>
+
 <form action = "/rikis/submit" method="post">
   <div class="form-group">
     <label for="exampleFormControlInput1">User ID (Auto-Filled)</label>
@@ -75,3 +84,8 @@
     </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+
+<% else %>
+    <a href="/logins/new" class="btn btn-danger">Please sign in to Submit a Riki</a>
+<% end %>
+ </p>

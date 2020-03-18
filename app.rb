@@ -50,8 +50,18 @@ get "/locations/:id" do
     @user = users_table.where(id: params[:id]).to_a[0]
     @rikis = rikis_table.where(locations_id: @location[:id])
     @users_table = users_table
+    @average = rikis_table.where(locations_id: @location[:id]).avg(:rating)
 
     view "location"
+end
+
+get "/map/:id" do
+  # lat: ± 90.0
+  # long: ± 180.0
+  puts "params: #{params}"
+  @locations = locations_table.all.to_a
+  @location = locations_table.where(id: params[:id]).to_a[0]
+  view "map"
 end
 
 get "/users/new" do

@@ -9,23 +9,27 @@
       <th scope="col">Comments</th>
     </tr>
   </thead>
-  <tbody>
+<tbody>
     <tr>
       <td><% for location in @locations %>
     <p><a href="/locations/<%= location[:id] %>"><%= location[:name] %></a></p>
 <% end %></td>
       <td><% for location in @locations %>
-    <p><%= location [:description] %></a></p>
+    <p><%= location[:description] %></p>
 <% end %></td>
-      <td>82%</td>
-      <td>Sample text sample text sample text</td>
+      <td><% for location in @locations%>
+    <p><a href="/map/<%= location[:id] %>"><%= location[:address] %></a></p>
+<% end %></td>
     </tr>
   </tbody>
 </table>
 
 <!-- Form for New Bar or Restaurant -->
 
-<h1>Submit a New Bar!</h1>
+<h1>Submit a New Location!</h1>
+
+<p class="mt-5">
+<% if @current_user %>
 
 <form action="/locations/submit" method="post">
   <div class="form-group">
@@ -53,3 +57,8 @@
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+
+<% else %>
+    <a href="/logins/new" class="btn btn-danger">Please sign in to Submit a Location</a>
+<% end %>
+ </p>
