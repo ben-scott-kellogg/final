@@ -80,12 +80,20 @@ get "/logins/new" do
 end
 
 post "/logins/create" do
-    user = users_table.where(email: params["email"]).to_a[0]
-    puts BCrypt::Password::new(user[:password])
-    if user && BCrypt::Password::new(user[:password]) == params["password"]
-        session["user_id"] = user[:id]
-        @current_user = user
-        view "create_login"
+    puts "params: #{params}"
+
+    # step 1: user with the params["email"] ?
+    @user = users_table.where(email: params["email"]).to_a[0]
+
+    if @user
+        # step 2: if @user, does the encrypted password match?
+        if BCrypt::Password.new(@user[:password]) == params["password"]
+            # set encrypted cookie for logged in user
+            session["user_id"] = @user[:id]
+            redirect "/"
+        else
+            view "create_login_failed"
+        end
     else
         view "create_login_failed"
     end
@@ -101,7 +109,7 @@ end
 
 post "/rikis/submit" do
     puts params
-    rikis_table.insert(purpose: params["purpose"],
+        rikis_table.insert(purpose: params["purpose"],
                         rating: params["rating"],
                         comments: params["comments"],
                         users_id: params["users_id"],
