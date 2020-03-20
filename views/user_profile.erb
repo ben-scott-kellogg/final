@@ -1,0 +1,30 @@
+<h1> <%= @current_user[:name]%>'s Profile </h1>
+
+<!--- # post all riki's for all bars --->
+
+<h4>Your Rikis</h4>
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Location</th>
+      <th scope="col">Purpose</th>
+      <th scope="col">Rating</th>
+      <th scope="col">Comments</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">
+        <p><% for riki in @user_rikis %><%= @locations_table.where(id: riki[:locations_id]).to_a[0][:name] %></p>
+        <% end %></th>
+      <td><p><% for riki in @user_rikis %><%= riki[:purpose] %></p>
+        <% end %></td>
+      <td><p><% for riki in @user_rikis %><%= riki[:rating] %></p>
+        <% end %></td>
+      <td><p><% for riki in @user_rikis %><%= riki[:comments] %></p>
+        <% end %></td>
+    </tr>
+  </tbody>
+</table>
+
+<!--- # limit to only riki's submitted by the @current_user--->

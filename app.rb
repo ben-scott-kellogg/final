@@ -79,6 +79,13 @@ get "/logins/new" do
     view "new_login"
 end
 
+get "/users/:id" do 
+    puts params
+    @user_rikis = rikis_table.where(users_id: @current_user[:id])
+    @locations_table = locations_table
+    view "user_profile"
+end
+
 post "/logins/create" do
     puts "params: #{params}"
 
@@ -109,6 +116,8 @@ end
 
 post "/rikis/submit" do
     puts params
+  @locations = locations_table.all.to_a
+  @location = locations_table.where(id: params[:id]).to_a[0]
         rikis_table.insert(purpose: params["purpose"],
                         rating: params["rating"],
                         comments: params["comments"],
