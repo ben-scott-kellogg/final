@@ -31,6 +31,11 @@ DB.create_table! :users do
   String :email
   String :password
 end
+DB.create_table! :relationships do
+    primary_key :id
+    Integer :follower_id
+    Integer :followed_id
+end
 
 # Areas Initial (Seed) Data
 areas_table = DB.from(:areas)
@@ -288,3 +293,8 @@ rikis_table.insert(locations_id: 12,
                 rating: 4,
                 purpose: "Drink",
                 comments: "Great date spot! Grab a seat by the back couches...")
+
+#Relationships (Seed)
+relationships_table = DB.from(:relationships)
+relationships_table.insert(follower_id: 2, 
+                    followed_id: 3)
