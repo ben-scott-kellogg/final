@@ -49,9 +49,9 @@ get "/locations/:id" do
     @location = locations_table.where(id: params[:id]).to_a[0]
     @user = users_table.where(id: params[:id]).to_a[0]
     @rikis = rikis_table.where(locations_id: @location[:id])
+    @rikis_count = rikis_table.where(locations_id: @location[:id]).count(:rating)
     @users_table = users_table
     @average = rikis_table.where(locations_id: @location[:id]).avg(:rating)
-
     view "location"
 end
 
@@ -81,9 +81,9 @@ end
 
 get "/users/:id" do 
     puts params
-    @user_rikis = rikis_table.where(users_id: @current_user[:id])
-    @locations_table = locations_table
-    view "user_profile"
+    @user = users_table.where(id: params[:id]).to_a[0]
+    @rikis = rikis_table.where(users_id: @user)
+    view "profile_user"
 end
 
 post "/logins/create" do
