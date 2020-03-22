@@ -1,1 +1,26 @@
-<h1> Eat Drink & Do in <%=@user[:name]%> </h1>
+<h1>
+<%if @current_user %>
+    Your Profile
+<%else %>
+<%=@user[:name]%>'s Profile
+<%end%>
+</h1>
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Rating</th>
+      <th scope="col">Comments</th>
+    </tr>
+  </thead>
+<tbody>
+    <tr>
+      <td><% for riki in @rikis %>
+            <p><%= riki[:locations_id] %></p>
+        <% end %></td>
+      <td><% for riki in @rikis %>
+            <p><%= riki[:rating] %></p>
+        <% end %></td>  
+      <td><% for riki in @rikis %>
+            <p><%= riki[:comments] %></p>
+        <% end %></td>  

@@ -82,7 +82,7 @@ end
 get "/users/:id" do 
     puts params
     @user = users_table.where(id: params[:id]).to_a[0]
-    @rikis = rikis_table.where(users_id: @user)
+    @rikis = rikis_table.where(users_id: @user[:id])
     view "profile_user"
 end
 
